@@ -7,15 +7,26 @@ import {
   Text,
   TouchableOpacity,
   View,
+  InteractionManager,
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+import * as FirebaseAPI from '../modules/firebaseAPI';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
+  logout(navigation) {
+    console.log('logout() called', navigation)
+    FirebaseAPI.logoutUser()
+
+    InteractionManager.runAfterInteractions(() => {
+      navigation.navigate('Auth')
+    })
+  }
 
   render() {
     return (
@@ -54,11 +65,9 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
+          <TouchableOpacity onPress={() => {this.logout(this.props.navigation)}}>
+            <Text style={styles.tabBarInfoText}>Logout</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

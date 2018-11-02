@@ -7,6 +7,11 @@ export const createUser = (email, password) => {
     .catch((error) => console.log('createUser error: ', error));
 }
 
-export const getUser = () => {
+export const signInUser = (email, password) => {
+	firebase.auth().signInWithEmailAndPassword(email, password)
+		.catch((error) => console.log('createUser error: ', error));
+}
 
+export const logoutUser = () => {
+	firebase.auth().signOut();
 }

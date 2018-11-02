@@ -25,21 +25,25 @@ export default class LoginScreen extends React.Component {
   };
 
   componentDidMount() {
-    this.watchAuthState()
+    this.watchAuthState(this.props.navigation)
   }
 
-  watchAuthState() {
+  watchAuthState(navigation) {
     firebase.auth().onAuthStateChanged(function(user) {
       console.log('onAuthStatheChanged: ', user)
       
       if (user) {
-        this.props.navigation.navigate('App');
+        navigation.navigate('Main');
       }
     });
   }
 
-  submit() {
+  createUser() {
     FirebaseAPI.createUser(this.state.email, this.state.password)
+  }
+
+  signIn() {
+    FirebaseAPI.signInUser(this.state.email, this.state.password)
   }
 
   render() {
@@ -57,12 +61,23 @@ export default class LoginScreen extends React.Component {
             onChangeText={(text) => this.setState({password: text})}
             value={this.state.password}
           />
+
           <TouchableOpacity
             style={{marginTop: '5%'}}
-            onPress={() => this.submit()}
+            onPress={() => this.signIn()}
           >
             <View>
-              <Text>Submit</Text>
+              <Text>Log In Existing</Text>
+            </View>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity
+            style={{marginTop: '5%'}}
+            onPress={() => this.createUser()}
+          >
+            <View>
+              <Text>Create New User</Text>
             </View>
           </TouchableOpacity>
         </View>
