@@ -5,16 +5,18 @@ import firebase from 'firebase';
 
 import AppNavigator from './navigation/AppNavigator';
 
-var config = {
-  apiKey: "AIzaSyAy5MSc8QXwgbtk-N1V-YCsWkdRedP-sZM",
-  authDomain: "st-co-op.firebaseapp.com",
-  databaseURL: "https://st-co-op.firebaseio.com",
-  projectId: "st-co-op",
-  storageBucket: "st-co-op.appspot.com",
-  messagingSenderId: "940059743357"
+const config = require('./config')
+
+var firebaseConfig = {
+  apiKey: config.firebase.apiKey,
+  authDomain: config.firebase.authDomain,
+  databaseURL: config.firebase.databaseURL,
+  projectId: config.firebase.projectId,
+  storageBucket: config.firebase.storageBucket,
+  messagingSenderId: config.firebase.messagingSenderId
 };
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 export default class App extends React.Component {
   state = {
