@@ -1,3 +1,10 @@
 node_modules/**/*
-.expo/**/*
-config.js
+.expo/*
+npm-debug.*
+*.jks
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+web-report/

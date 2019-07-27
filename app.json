@@ -1,11 +1,14 @@
 {
   "expo": {
     "name": "firebase-login-app",
-    "description": "A very interesting project.",
     "slug": "firebase-login-app",
     "privacy": "public",
-    "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "sdkVersion": "33.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
